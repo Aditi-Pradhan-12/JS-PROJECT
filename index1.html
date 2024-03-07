@@ -18,35 +18,94 @@
     <!--===========FONT AWESOME CDN=============-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body>
+<div>
+
+    <!--======= BUTTON ON MOBILE SCREEN SIZE==========-->
+    <div class="add__new__button__mobile__only">
+        <button class="btn btn-primary" 
+            type="submit"
+            data-toggle="modal" 
+            data-target="#addNewModal">
+            <i class="fa-solid fa-plus"></i> Add New Item
+        </button>
+    </div>
+
     <!--========= ADD NEW MODAL =========-->
-    <div class="modal fade" 
-        id="addNewModal" 
-        tabindex="-1" 
-        aria-labelledby="addNewModalLabel" 
-        aria-hidden="true">
+      <div class="modal fade" id="addNewModal" tabindex="-1" aria-labelledby="addNewModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="addNewModalLabel">Add New Tasks</h1>
-              <button type="button" 
-                class="btn-close" 
-                data-bs-dismiss="modal" 
-                aria-label="Close">
+              <button type="submit" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
               </button>
             </div>
             <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="imageUrl" class="form-label">
+                    Image URL
+                  </label>
+                  <input type="url" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Please add your image link here...." />
+                  <div id="imageUrlHelp" class="form-text">
+                    It's an optional field....
+                  </div>
+                </div>
+                    
+                <div>
+                  <label for="tags" class="form-label">
+                    Task Title
+                  </label>
+                  <input type="text" class="form-control" id="tasktitle" aria-describedby="tasktitleHelp" placeholder="Please add your task title here...." required />
+                </div>
+
+                <div>
+                  <label for="tags" class="form-label">
+                    Task Type
+                  </label>
+                  <input type="text" class="form-control" id="tasktype" aria-describedby="tasktypeHelp" placeholder="Please add your task type here...." required/>
+                </div>
+                <div class="mb-3">
+                  <label for="taskdescription" class="form-label">
+                    Task Description
+                  </label>
+                  <textarea type="text" id="textdescription" class="form-control" placeholder="Please add your task description here...." required>
+                    Description
+                  </textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!--========= ADD NEW MODAL 2=========-->
+      <!--==== Button trigger modal for show task ====-->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#showTaskModal">
+        Launch demo modal
+      </button>
+      <!--==== open task Modal ====-->
+      <div class="modal fade" id="showTaskModal" tabindex="-1" aria-labelledby="showTaskModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="showTaskModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body task__modal__body">
               
             </div>
             <div class="modal-footer">
-              <button type="button" 
-              class="btn btn-secondary" 
-              data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
       </div>
+
     <!--==========CUSTOM JS==============-->
     <script src="index1.js"></script>
 
@@ -69,20 +128,19 @@
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
             </ul>
-            <form class="d-flex" role="search">
-              <button class="btn btn-primary" 
-                type="submit"
-                data-toggle="modal" 
-                data-target="#addNewModal">
+            <button type="submit" 
+              class="btn btn-primary" 
+              data-bs-toggle="modal" 
+              data-bs-target="#addNewModal">
                 <i class="fa-solid fa-plus"></i> Add New Item
-              </button>
+            </button>
           </div>
         </div>
     </nav>
 
     <!--==========SEARCH BAR==============-->
-    <div>                                                    <!--mt means mrgin on top-->
-        <section class="container mt-4">
+    <div class="container">                                                    <!--mt means mrgin on top-->
+        <section class="mt-4">
             <div class="row justify-content-center">
                 <div class="col-md-6">                                                <!--col-md-6 means we want columns and on medium screen size it should take 6 grids-->         
                     <div class="input-group shadow-lg flex-nowrap">
@@ -106,5 +164,6 @@
             </div>
         </section>
     </div>
+  </div>
 </body> 
 </html> 

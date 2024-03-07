@@ -7,3 +7,19 @@ body{
     background-color: #ebf2ff !important;           /*!IMPORATANT IS USED AS SOMETIMES THE COLOR MAY BE HIDDEN, SO TO AVOID THAT WE USED !IMPOSRTANT*/
 }
 
+.add__new__button__mobile__only{
+    position: fixed;                                /*position is fixed to keep it fixed at the bottom only*/
+    bottom: 0;
+    right: 0;
+    padding: 15px 10px;
+    background-color: white;
+    z-index: 3;
+    width: 100%;
+}
+
+@media (min-width:760px){                       /*media queries for the button on bottom to be visiblke on mobile screen size only*/
+    .add__new__button__mobile__only{
+        display: none;
+    }
+}
+
