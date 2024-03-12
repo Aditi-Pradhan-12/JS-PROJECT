@@ -25,3 +25,5 @@ the entire code above will be forming a DOM tree i.e.
 DOM tree is basically a representation of the html code.
 
 CDN stands for Content Delivery Network
+
+The data that we have in our application is dynamic in nature. We are storing the data at three different storages namely, the UI, local machine editor and browser's local storage.

@@ -13,7 +13,7 @@ body{
     right: 0;
     padding: 15px 10px;
     background-color: white;
-    z-index: 3;
+    z-index: 3;                                     /*z-index is the opacity factor to make things visible*/
     width: 100%;
 }
 
@@ -22,4 +22,3 @@ body{
         display: none;
     }
 }
-
