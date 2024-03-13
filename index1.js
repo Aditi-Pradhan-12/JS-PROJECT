@@ -69,10 +69,29 @@ const updatelocalstorage =() =>{
 }
 
 /* 3] DATA STORED IN UI (data in UI should be in JSON format)*/
+/*to load initial data*/
 const loadInitialData=() => {
     const localStorageCopy = JSON.parse(localStorage.tasks)
     /*an 'if' condition is needed for not having any data stored at first instance, we'll take it from the local storage*/
     if(localStorageCopy) state.taskList = localStorageCopy.tasks;
+
+    /*tasklist elements/data is stored here*/
+    state.taskList.map((cardDate)=>{
+        taskContents.insertAdjacentHTML("beforeend", htmlTaskContents(cardDate))
+    })
 }
 
 /*PARSE FUNCTION WILL CONVERT THE DATA JSON FORMAT TO STRING*/
+const handleSubmit = (event) =>{
+    const id = `${Date.now()}`
+    const input ={
+        url: document.getElementById(`imageurl`).value, 
+        title: document.getElementById(`tasktitle`).value, 
+        description: document.getElementById(`taskdescription`).value,
+        type: document.getElementById(`tasktype`).value,
+   };
+   taskContents.insertAdjacentHTML("beforeend", htmlTaskContents({
+    /*spread operator syntax:console.log((...data))*/
+    
+   }))
+}
