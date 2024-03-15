@@ -11,16 +11,17 @@ const taskModal=document.querySelector(".task__modal__body");
 //we don't want this, instead we are inducing the codes from javascript to html.ie.e we are going dynamic and not static.
 
 //** HTML TASK CONTENTS (CARDS SECTION) **//
+
 /* CARDS HEADER PART */
 const htmlTaskContent=({url,title,type,description,id}) => `
     <div class="col-md-6 col-lg-4 mt-3" id=${id} key=${id}>
         <div class="card shadow-sm task__card">
             <div class="card-header d-flex justify-content-end task__card__header">
-                <button type="button" class="btn btn-outline-primary mr-2" name=${id}>
+                <button type="button" class="btn btn-outline-primary mr-2" name=${id} onclick="deleteTask.apply(this, arguments)">
                     <i class="fas fa-pencil-alt" name=${id}></i>
                 </button>
 
-                <button type="button" class="btn btn-outline-danger mr-2" name=${id}>
+                <button type="button" class="btn btn-outline-danger mr-2" name=${id}> onclick="deleteTask.apply(this, arguments)">
                     <i class="fas fa-trash-alt"name=${id}></i>
                 </button>
             </div>
@@ -41,7 +42,11 @@ const htmlTaskContent=({url,title,type,description,id}) => `
             </div>
             /*********** FOOTER PART ***********/
             <div class="card-footer">
-                <button class="btn btn-outline-primary float-right" data-bs-toggle="modal" data-bs-target="#showTaskModal">Open Task</button>
+                <button class="btn btn-outline-primary float-right" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#showTaskModal" 
+                    id=${id} onclick="">Open Task
+                </button>
             </div>
         </div>
     </div>
@@ -49,7 +54,7 @@ const htmlTaskContent=({url,title,type,description,id}) => `
 //* while mentioning the js code in html, make sure to write a ${} sign for syntax purpose*/
 //** id is to identify the card of many cards we will create. Also, while mentioning the things of html in js, quote them in backtics i.e. `` **//
 
-const htmltaskModal=(id, title, url, description)=> {
+const htmlModalContent=(id, title, url, description)=> {
     const date= new Date(parseInt(id));                             /*to get the current date when the card is created*/
     return `
         <div id=${id}>
@@ -110,4 +115,55 @@ const handleSubmit = (event) =>{
    state.taskList.push({...input, id});
    /*update on local storage*/
    updatelocalstorage();
+}
+
+const openTask=(e) => {
+    if(!e) e = window.event;
+
+    const getTask=state.taskList.find(({id})=> id === e.target.id);
+    taskModal.innerHTML = htmlModalContent(getTask);
+}
+
+/*DELETE FUNCTIONALITIES i.e data must be deleted from 3 places, the UI, local storage and the array*/
+const deleteTask=(e) => {
+    if(!e) e = window.event;
+
+    const targetId = e.target.getAttribute("name");
+    const type = e.target.tagName;
+    
+    /*remove the particular card*/
+    /*first check whether the entity is present or not*/
+    const removeTask = state.taskList.filter(({id})=> id !== targetId);
+    
+    state.taskList = removeTask;                /*deleted from array*/
+    updatelocalstorage();                       /*deleted from localstorage*/
+    
+    /*deleted from UI*/
+    if(type === "BUTTON"){
+        return e.target.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild;{
+            e.target.parentNode.parentNode.parentNode.parentNode
+        }
+    }
+}
+
+/*EDITING FUNCTIONALITIES*/
+const editTask=(e) => {
+    if(!e) e = window.event;
+
+    const targetId = e.target.id;
+    const type = e.target.tagName;
+    
+    let parentNode;
+    let tasktitle;
+    let taskdescription;
+    let tags;
+    let submitButon;
+
+    if(type === "BUTTON"){
+        parentNode = e.target.parentNode.parentNode;
+    }else{                                                          /*for icon*/
+        parentNode = e.target.parentNode.parentNode.parentNode;
+    }
+
+    tasktitle = parentNode.childNodes;
 }
