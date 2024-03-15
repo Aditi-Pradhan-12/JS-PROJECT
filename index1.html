@@ -7,7 +7,7 @@
 
     <!--==========CUSTOM CSS FILE==============-->
     <link rel="stylesheet" href="/styles1.css"/>
-    <link rel="stylesheet" href="/index1.js">
+    <script src="index1.js"></script>
 
     <!--==========BOOTSTRAP CDN FOR CSS==============-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
@@ -18,24 +18,31 @@
     <!--===========FONT AWESOME CDN=============-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-  <body>
+  <body onload="loadInitialData()">
     <!--======= BUTTON ON MOBILE SCREEN SIZE==========-->
     <div class="add__new__button__mobile__only">
         <button class="btn btn-primary" 
-            type="submit"
+            type="button"
             data-toggle="modal" 
             data-target="#addNewModal">
             <i class="fa-solid fa-plus"></i> Add New Item
         </button>
     </div>
 
-    <!--========= ADD NEW MODAL =========-->
-      <div class="modal fade" id="addNewModal" tabindex="-1" aria-labelledby="addNewModalLabel" aria-hidden="true">
+    <!--========= ADD NEW TASKS MODAL =========-->
+      <div class="modal fade" 
+            id="addNewModal" 
+            tabindex="-1" 
+            aria-labelledby="addNewModalLabel" 
+            aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="addNewModalLabel">Add New Tasks</h1>
-              <button type="submit" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <button type="submit" 
+                class="btn-close" 
+                data-bs-dismiss="modal" 
+                aria-label="Close">
               </button>
             </div>
             <div class="modal-body">
@@ -44,7 +51,10 @@
                   <label for="imageUrl" class="form-label">
                     Image URL
                   </label>
-                  <input type="url" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Please add your image link here...." />
+                  <input type="url" class="form-control" 
+                    id="exampleInputEmail1" 
+                    aria-describedby="emailHelp" 
+                    placeholder="Please add your image link here...." />
                   <div id="imageUrlHelp" class="form-text">
                     It's an optional field....
                   </div>
@@ -54,28 +64,35 @@
                   <label for="tags" class="form-label">
                     Task Title
                   </label>
-                  <input type="text" class="form-control" id="tasktitle" aria-describedby="tasktitleHelp" placeholder="Please add your task title here...." required />
+                  <input type="text" class="form-control" 
+                    id="tasktitle" 
+                    aria-describedby="tasktitleHelp" 
+                    placeholder="Please add your task title here...." required />
                 </div>
 
                 <div>
                   <label for="tags" class="form-label">
                     Task Type
                   </label>
-                  <input type="text" class="form-control" id="tasktype" aria-describedby="tasktypeHelp" placeholder="Please add your task type here...." required/>
+                  <input type="text" class="form-control" 
+                    id="tasktype" 
+                    aria-describedby="tasktypeHelp" 
+                    placeholder="Please add your task type here...." required/>
                 </div>
                 <div class="mb-3">
                   <label for="taskdescription" class="form-label">
                     Task Description
                   </label>
-                  <textarea type="text" id="taskdescription" class="form-control" placeholder="Please add your task description here...." required>
-                    Description
+                  <textarea type="text" id="taskdescription" 
+                    class="form-control" 
+                    placeholder="Please add your task description here...." required>
                   </textarea>
                 </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary" onclick="handleSubmit()">Save changes</button>
+                </div>
               </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>

@@ -12,12 +12,12 @@ const taskModal=document.querySelector(".task__modal__body");
 
 //** HTML TASK CONTENTS (CARDS SECTION) **//
 /* CARDS HEADER PART */
-const htmlTaskContents=(url,title,type,description,id) => `
+const htmlTaskContent=({url,title,type,description,id}) => `
     <div class="col-md-6 col-lg-4 mt-3" id=${id} key=${id}>
         <div class="card shadow-sm task__card">
             <div class="card-header d-flex justify-content-end task__card__header">
                 <button type="button" class="btn btn-outline-primary mr-2" name=${id}>
-                    <i class="fas fa-pencil-alt"name=${id}></i>
+                    <i class="fas fa-pencil-alt" name=${id}></i>
                 </button>
 
                 <button type="button" class="btn btn-outline-danger mr-2" name=${id}>
@@ -73,7 +73,7 @@ const updatelocalstorage =() =>{
 const loadInitialData=() => {
     const localStorageCopy = JSON.parse(localStorage.tasks)
     /*an 'if' condition is needed for not having any data stored at first instance, we'll take it from the local storage*/
-    if(localStorageCopy) state.taskList = localStorageCopy.tasks;
+    if(localStorageCopy) state.taskList = localStorageCopy.task;
 
     /*tasklist elements/data is stored here*/
     state.taskList.map((cardDate)=>{
@@ -81,7 +81,7 @@ const loadInitialData=() => {
     })
 }
 
-/*PARSE FUNCTION WILL CONVERT THE DATA JSON FORMAT TO STRING*/
+/*PARSE FUNCTION WILL CONVERT THE DATA IN JSON FORMAT TO STRING*/
 const handleSubmit = (event) =>{
     const id = `${Date.now()}`
     const input ={
@@ -89,9 +89,20 @@ const handleSubmit = (event) =>{
         title: document.getElementById(`tasktitle`).value, 
         description: document.getElementById(`taskdescription`).value,
         type: document.getElementById(`tasktype`).value,
-   };
+    };
+
+    /*we don't want to give the empty cards to the users, so for that we'll put an if condition*/
+    if(input.title === "" || input.description === "" || input.type === ""){
+        return alert("please fill all required fields");
+    }
    taskContents.insertAdjacentHTML("beforeend", htmlTaskContents({
-    /*spread operator syntax:console.log((...data))*/
-    
+    /*spread operator syntax:console.log({...data}), if the key is already present in our data then it will just go and edit the one and we'll don't have to update it manually.*/
+    /*we'll use spread operator here, as we won't be able to update the above 4 criterias individually, everytime we want.*/
+        ...input,
+        id
    }))
+   /*update on array*/
+   state.taskList.push({...input, id});
+   /*update on local storage*/
+   updatelocalstorage();
 }
