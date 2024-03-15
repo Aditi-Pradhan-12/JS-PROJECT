@@ -27,8 +27,11 @@ const htmlTaskContent=({url,title,type,description,id}) => `
             /*********** CARDS BODY PART ***********/
             <div class="card-body">
                 ${
-                    url &&
-                    `<img width="100%" src=${url} alt="card image top" class="card-img-top md-3 rounded-lg"/>`
+                    url ?
+                    `<img width="100%" src=${url} alt="card image top" class="card-img-top md-3 rounded-lg"/>`:
+                    `<img width="100%" src="https://www.google.com/imgres?imgurl=https%3A%2F%2Ft3.ftcdn.net%2Fjpg%2F05%2F60%2F26%2F08%2F360_F_560260880_O1V3Qm2cNO5HWjN66mBh2NrlPHNHOUxW.jpg&tbnid=ad5EzW-0W2cYwM&vet=12ahUKEwjk1Mb09vWEAxWm2jgGHV70ACQQMygGegUIARCAAQ..i&imgrefurl=https%3A%2F%2Fstock.adobe.com%2Fsearch%2Fimages%3Fk%3Ddefault%2Buser&docid=u9m-FeZHmA56hM&w=360&h=360&q=image%20default%20user&ved=2ahUKEwjk1Mb09vWEAxWm2jgGHV70ACQQMygGegUIARCAAQ" 
+                    alt="card image top" class="card-img-top md-3 rounded-lg"/>`
+
                 }
                 <h4 class="card-title task__card__title">${title}</h4>
                 <p class="description card-text trim-3-lines text-muted">${description}</p>
@@ -52,7 +55,9 @@ const htmltaskModal=(id, title, url, description)=> {
         <div id=${id}>
         ${
             url &&
-            `<img width="100%" src=${url} alt="card image top" class="img-fluid place_holder_img md-3 rounded-lg"/>`
+            `<img width="100%" 
+            src="https://www.google.com/imgres?imgurl=https%3A%2F%2Ft3.ftcdn.net%2Fjpg%2F05%2F60%2F26%2F08%2F360_F_560260880_O1V3Qm2cNO5HWjN66mBh2NrlPHNHOUxW.jpg&tbnid=ad5EzW-0W2cYwM&vet=12ahUKEwjk1Mb09vWEAxWm2jgGHV70ACQQMygGegUIARCAAQ..i&imgrefurl=https%3A%2F%2Fstock.adobe.com%2Fsearch%2Fimages%3Fk%3Ddefault%2Buser&docid=u9m-FeZHmA56hM&w=360&h=360&q=image%20default%20user&ved=2ahUKEwjk1Mb09vWEAxWm2jgGHV70ACQQMygGegUIARCAAQ" 
+            alt="card image top" class="img-fluid place_holder_img md-3 rounded-lg"/>`
         }
         <strong>Created on ${date.toDateString()}</strong>                      /*toDateString is used for having the date in string format and not in integer one*/
         <h2 class="my-3">${title}</h2>
