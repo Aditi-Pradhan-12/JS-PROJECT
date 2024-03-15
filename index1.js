@@ -157,7 +157,7 @@ const editTask=(e) => {
     let tasktitle;
     let taskdescription;
     let tags;
-    let submitButon;
+    let submitButton;
 
     if(type === "BUTTON"){
         parentNode = e.target.parentNode.parentNode;
@@ -165,5 +165,27 @@ const editTask=(e) => {
         parentNode = e.target.parentNode.parentNode.parentNode;
     }
 
-    tasktitle = parentNode.childNodes;
+    taskdescription = parentNode.childNodes[3].childNodes[5];
+    tags = parentNode.childNodes[3].childNodes[7].childNodes[1];
+    submitButton = parentNode.childNodes[3].childNodes[5].childNodes[1];
+
+    /*attributes for permission to edit*/
+    tasktitle.setAttribute("contenteditable", "true");
+    taskdescription.setAttribute("contenteditable", "true");
+    tags.setAttribute("contenteditable", "true");
+
+    /*edit the submit button to save the changes made*/
+    submitButton.setAttribute("onclick", "saveEdit.apply(this, arguments")
+
+    submitButton.removeAttribute("data-bs-toggle");
+    submitButton.removeAttribute("data-bs-target");
+    submitButton.innerHTML = "Save Changes";
+}
+
+/*save changes at 3 palces namely, the browser's local storage, the UI and the array*/
+const saveEdit = (e) => {
+    if(!e) e = window.event;
+    const targetId = e.target.id;
+    const parentNode = e.target.parentNode.parentNode;
+    
 }
