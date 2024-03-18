@@ -187,5 +187,58 @@ const saveEdit = (e) => {
     if(!e) e = window.event;
     const targetId = e.target.id;
     const parentNode = e.target.parentNode.parentNode;
-    
+
+    const tasktitle = parentNode.childNodes[3].childNodes[5];
+    const taskdescription = parentNode.childNodes[3].childNodes[5];
+    const tags = parentNode.childNodes[3].childNodes[7].childNodes[1];
+    const submitButton = parentNode.childNodes[3].childNodes[5].childNodes[1];
+    const updatedata = {
+        tasktitle: tasktitle.innerHTML,
+        taskdescription: taskdescription.innerhtml,
+        tags: tags.innerHTML,
+    }
+
+    let statecopy = state,tasklist;
+    statecopy = statecopy.map((task)=>
+        task.id === targetId ?
+        {
+            id: task.id,
+            title: updatedata.tasktitle,
+            description: updatedata.taskdescription,
+            tags: updatedata.tags,
+            url: task.url,
+        }
+        :
+        task
+    );
+    /*update on current array*/
+    state.taskList = statecopy;
+    updatelocalstorage();
+
+    /*edit the save changes option*/
+    tasktitle.setAttribute("contenteditable", "false");
+    taskdescription.setAttribute("contenteditable", "false");
+    tags.setAttribute("contenteditable", "false");
+
+    /*changing the button from save chnages to open task*/
+    submitButton.setAttribute("onclick", "openTask.apply(this, argument)");
+    submitButton.setAttributeAttribute("data-bs-toggle", "modal");
+    submitButton.setAttributeAttribute("data-bs-target", "#showTaskModel");
+    submitButton.innerHTML = "Open Task";
+}
+
+/*SEARCH TAB*/
+const searchTask=(e) => {
+    if(!e) e = window.event;
+
+    while(taskContents.firstChild){
+        taskContents.removeChild(taskContents.firstChild);
+    }
+
+    const resultData = state.taskList.filter(({title})=> title.includes(e.target.value));
+    /*console.log(resultData)*/
+
+    resultData.map((cardDate)=> {
+        taskContents.insertAdjacentHTML("beforeend", htmlTaskContent(cardDate));
+    })
 }
