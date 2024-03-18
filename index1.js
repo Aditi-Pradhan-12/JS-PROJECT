@@ -45,7 +45,7 @@ const htmlTaskContent=({url,title,type,description,id}) => `
                 <button class="btn btn-outline-primary float-right" 
                     data-bs-toggle="modal" 
                     data-bs-target="#showTaskModal" 
-                    id=${id} onclick="">Open Task
+                    id=${id} onclick="openTask.apply(this, arguments)">Open Task
                 </button>
             </div>
         </div>
