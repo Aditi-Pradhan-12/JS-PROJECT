@@ -17,7 +17,7 @@ const htmlTaskContent=({url,title,type,description,id}) => `
     <div class="col-md-6 col-lg-4 mt-3" id=${id} key=${id}>
         <div class="card shadow-sm task__card">
             <div class="card-header d-flex justify-content-end task__card__header">
-                <button type="button" class="btn btn-outline-primary mr-2" name=${id} onclick="deleteTask.apply(this, arguments)">
+                <button type="button" class="btn btn-outline-primary mr-2" name=${id} onclick="editTask.apply(this, arguments)">
                     <i class="fas fa-pencil-alt" name=${id}></i>
                 </button>
 
